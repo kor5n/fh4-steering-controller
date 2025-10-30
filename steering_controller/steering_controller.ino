@@ -19,10 +19,21 @@ void loop() {
   toggleGas = digitalRead(gasPin);
 
   if(steeringAngle >= 1023/2-diff && steeringAngle <= 1023/2+diff){
-    Serial.println("Going forward");
+    Serial.println("Steering forward");
   }else if (steeringAngle > 1023/2+diff){
+    /*if (steeringAngle > 1023/2+diff+150){
+      Serial.println("Steering right full");
+    }else if(steeringAngle <= 1023/2+diff+150){
+      Serial.println("Steering right easy")
+    }*/
     Serial.println("Steering right");
+    
   }else if (steeringAngle < 1023/2-diff){
+    /*if (steeringAngle < 1023/2-diff-150){
+      Serial.println("Steering left full");
+    }else if(steeringAngle >= 1023/2-diff-150){
+      Serial.println("Steering left easy")
+    }*/
     Serial.println("Steering left");
   }
 

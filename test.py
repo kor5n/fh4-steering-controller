@@ -24,6 +24,11 @@ def release_key(key):
         pressed_keys.remove(key)
         keyboard.release(key)
 
+def tap(key):
+    press_key(key)
+    time.sleep(0.03)
+    release_key(key)
+
 def move(string):
     if "Gas" in string:
         if "on" in string:
