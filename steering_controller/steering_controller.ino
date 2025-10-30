@@ -13,6 +13,7 @@ void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
   pinMode(gasPin, INPUT_PULLUP);
+  pinMode(brakePin, INPUT_PULLUP);
 }
 
 void loop() {
@@ -46,11 +47,6 @@ void loop() {
     Serial.println("Gas off");
   }
 
-  /*Testing brake button
-  Serial.println(toggleBrake);
-  Serial.print("G:");
-  Serial.print(toggleGas);
-  Serial.print("\n");*/
   if (toggleBrake == 0){
     Serial.println("Brake turn");
   }else{
