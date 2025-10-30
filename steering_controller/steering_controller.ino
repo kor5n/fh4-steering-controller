@@ -22,7 +22,7 @@ void loop() {
     Serial.println("Going forward");
   }else if (steeringAngle > 1023/2+diff){
     Serial.println("Steering right");
-  }else if (steeringAngle < 1023/2+diff){
+  }else if (steeringAngle < 1023/2-diff){
     Serial.println("Steering left");
   }
 
@@ -31,5 +31,4 @@ void loop() {
   }else{
     Serial.println("Gas on");
   }
-
 }
