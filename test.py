@@ -26,7 +26,7 @@ def release_key(key):
 
 def tap(key):
     press_key(key)
-    time.sleep(0.03)
+    time.sleep(0.05)
     release_key(key)
 
 def move(string):
@@ -36,16 +36,29 @@ def move(string):
         else:
             release_key("w")
     
+    if "Brake" in string:
+        if "turn" in string:
+            press_key("s")
+        else:
+            release_key("s")
+
+    
     if "Steer" in string:
         if "forward" in string:
             release_key("a")
             release_key("d")
         elif "right" in string:
-            release_key("a")
-            press_key("d")
+            if "full" in string:
+                release_key("a")
+                press_key("d")
+            elif "easy" in string:
+                tap("d")
         elif "left" in string:
-            release_key("d")
-            press_key("a")
+            if "full" in string:
+                release_key("d")
+                press_key("a")
+            elif "easy" in string:
+                tap("a")
 
 while True:
     if ser.in_waiting > 0:
