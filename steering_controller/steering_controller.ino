@@ -22,7 +22,8 @@ void loop() {
   toggleGas = digitalRead(gasPin);
   toggleBrake = digitalRead(brakePin);
 
-  if(steeringAngle >= 1023/2-diff && steeringAngle <= 1023/2+diff){
+  //keyboard steering version
+  /*if(steeringAngle >= 1023/2-diff && steeringAngle <= 1023/2+diff){
     Serial.println("Steering forward");
   }else if (steeringAngle > 1023/2+diff){
     if (steeringAngle > 1023/2+2*diff){
@@ -39,7 +40,12 @@ void loop() {
       Serial.println("Steering left easy");
     }
     //Serial.println("Steering left");
-  }
+  }*/
+
+  //controller steering version
+  Serial.print("Steering ");
+  Serial.print(steeringAngle);
+  Serial.print("\n");
 
   if(toggleGas == 0){
     Serial.println("Gas on");
