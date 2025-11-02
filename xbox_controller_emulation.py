@@ -68,7 +68,7 @@ def main():
                 
 
     except KeyboardInterrupt:
-        gamepad.left_joystick(x_value=CENTER_AXIS, y_value=CENTER_AXIS)
+        gamepad.reset()
         gamepad.update()
         print("RESET STEERING, SCRIPT STOPPING...")
 
