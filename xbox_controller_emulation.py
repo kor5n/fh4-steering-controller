@@ -3,8 +3,9 @@ import serial
 import vgamepad as vg
 
 #Arduino setup
+MAPPING = 120
 arduino_port = "COM3"
-baud_rate = 9600
+baud_rate = 115200
 ser = serial.Serial(arduino_port, baud_rate, timeout=1)
 time.sleep(2)
 print("Connected to arduino")
@@ -61,7 +62,7 @@ def main():
                 if "Steering" in line:
                     try:
                         d_read = int(line.split(" ")[1])
-                        gamepad.left_joystick(x_value=int(d_read / 1023 * (-(MIN_AXIS) + MAX_AXIS) - MAX_AXIS -1), y_value=CENTER_AXIS)
+                        gamepad.left_joystick(x_value=int(d_read / MAPPING * (-(MIN_AXIS) + MAX_AXIS) - MAX_AXIS -1), y_value=CENTER_AXIS)
                     except:
                         gamepad.left_joystick(x_value=CENTER_AXIS, y_value=CENTER_AXIS)
                     gamepad.update()
@@ -69,7 +70,7 @@ def main():
 
     except KeyboardInterrupt:
         gamepad.reset()
-        gamepad.update()
+        gamepad.update() 
         print("RESET STEERING, SCRIPT STOPPING...")
 
 main()
