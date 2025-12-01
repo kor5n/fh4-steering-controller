@@ -3,7 +3,7 @@ import serial
 import vgamepad as vg
 
 #Arduino setup
-MAPPING = 120
+MAPPING = 180
 arduino_port = "COM3"
 baud_rate = 115200
 ser = serial.Serial(arduino_port, baud_rate, timeout=1)
@@ -45,7 +45,7 @@ def main():
         print("waiting for input")
         while True:
             if ser.in_waiting > 0:
-                line = ser.readline().decode("utf-8").strip()
+                line = ser.readline().decode("latin-1").strip()
 
                 if "Gas" in line:
                     if "on" in line:
@@ -61,7 +61,14 @@ def main():
 
                 if "Steering" in line:
                     try:
-                        d_read = int(line.split(" ")[1])
+                        d_read = float(line.split(" ")[1])
+                        if d_read > MAPPING:
+                            d_read = MAPPING
+                        elif d_read < MAPPING:
+                            d_read = 0
+                        else:
+                            d_read = MAPPING - d_read
+
                         gamepad.left_joystick(x_value=int(d_read / MAPPING * (-(MIN_AXIS) + MAX_AXIS) - MAX_AXIS -1), y_value=CENTER_AXIS)
                     except:
                         gamepad.left_joystick(x_value=CENTER_AXIS, y_value=CENTER_AXIS)
